@@ -15,4 +15,13 @@ model Media {
   title       String?
   description String?
   files       String[]
+  ownerID     Int
+  owner User @relation(fields: [ownerID], references: [id])
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  email String @unique
+  displayName String
+  media Media[]
 }
